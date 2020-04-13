@@ -15,10 +15,19 @@ import javax.validation.Valid;
 @Component
 public interface AccountApi {
 
+    //-----------------------------------------------------------------------------------------------------------------
+    // AccountController
+    //-----------------------------------------------------------------------------------------------------------------
     @RequestMapping(value = "/account/get/by-id")
     Account getAccountById(@RequestParam("id") int id);
 
     @PostMapping(value = "/account/transfer")
     void transfer(@RequestBody @Valid AccountTransferRequest requestVo);
+
+    //-----------------------------------------------------------------------------------------------------------------
+    // TestController
+    //-----------------------------------------------------------------------------------------------------------------
+    @RequestMapping(value = "/test/ribbon-test")
+    String ribbonTest();
 
 }
