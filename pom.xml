@@ -16,5 +16,6 @@
         <module>account</module>
         <module>facade</module>
         <module>api</module>
+        <module>monitor</module>
     </modules>
 </project>
