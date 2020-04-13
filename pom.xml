@@ -11,5 +11,7 @@
     <modules>
 
         <module>common</module>
+        <module>eureka</module>
+        <module>config</module>
     </modules>
 </project>

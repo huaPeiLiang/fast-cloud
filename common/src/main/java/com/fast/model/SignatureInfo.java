@@ -1,10 +1,12 @@
 package com.fast.model;
 
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
+import lombok.Data;
 
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
 
+@Data
 public class SignatureInfo {
     private  String reason; //签名的原因，显示在pdf签名属性中
     private  String location;//签名的地点，显示在pdf签名属性中
@@ -20,84 +22,4 @@ public class SignatureInfo {
     private float rectlly ;//图章左下角y
     private float recturx ;//图章右上角x
     private float rectury ;//图章右上角y
-
-    public float getRectllx() {
-        return rectllx;
-    }
-    public void setRectllx(float rectllx) {
-        this.rectllx = rectllx;
-    }
-    public float getRectlly() {
-        return rectlly;
-    }
-    public void setRectlly(float rectlly) {
-        this.rectlly = rectlly;
-    }
-    public float getRecturx() {
-        return recturx;
-    }
-    public void setRecturx(float recturx) {
-        this.recturx = recturx;
-    }
-    public float getRectury() {
-        return rectury;
-    }
-    public void setRectury(float rectury) {
-        this.rectury = rectury;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-    public String getLocation() {
-        return location;
-    }
-    public void setLocation(String location) {
-        this.location = location;
-    }
-    public String getDigestAlgorithm() {
-        return digestAlgorithm;
-    }
-    public void setDigestAlgorithm(String digestAlgorithm) {
-        this.digestAlgorithm = digestAlgorithm;
-    }
-    public String getImagePath() {
-        return imagePath;
-    }
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-    public String getFieldName() {
-        return fieldName;
-    }
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-    public Certificate[] getChain() {
-        return chain;
-    }
-    public void setChain(Certificate[] chain) {
-        this.chain = chain;
-    }
-    public PrivateKey getPk() {
-        return pk;
-    }
-    public void setPk(PrivateKey pk) {
-        this.pk = pk;
-    }
-    public int getCertificationLevel() {
-        return certificationLevel;
-    }
-    public void setCertificationLevel(int certificationLevel) {
-        this.certificationLevel = certificationLevel;
-    }
-    public PdfSignatureAppearance.RenderingMode getRenderingMode() {
-        return renderingMode;
-    }
-    public void setRenderingMode(PdfSignatureAppearance.RenderingMode renderingMode) {
-        this.renderingMode = renderingMode;
-    }
 }
