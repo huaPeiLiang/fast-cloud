@@ -14,5 +14,7 @@
         <module>eureka</module>
         <module>config</module>
         <module>account</module>
+        <module>facade</module>
+        <module>api</module>
     </modules>
 </project>
