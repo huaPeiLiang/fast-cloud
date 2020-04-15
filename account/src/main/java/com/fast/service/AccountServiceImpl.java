@@ -1,6 +1,7 @@
 package com.fast.service;
 
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
+import com.fast.api.account.RecordApi;
 import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;
 import com.fast.repository.AccountRepository;
@@ -15,6 +16,9 @@ public class AccountServiceImpl {
 
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private RecordApi recordApi;
+
 
     public Account getAccountById(int id){
         Account account = accountRepository.findById(id).orElseGet(Account::new);
@@ -44,8 +48,8 @@ public class AccountServiceImpl {
         accountRepository.save(targetAccount);
 
         // 添加转账记录
-//        txLcnTwoApi.add(requestVo.getSourceAccountId(),requestVo.getAmount(),"支出");
-//        txLcnTwoApi.add(requestVo.getTargetAccountId(),requestVo.getAmount(),"收入");
+        recordApi.add(requestVo.getSourceAccountId(),requestVo.getAmount(),"支出");
+        recordApi.add(requestVo.getTargetAccountId(),requestVo.getAmount(),"收入");
     }
 
 }

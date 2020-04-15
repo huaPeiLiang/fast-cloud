@@ -17,5 +17,6 @@
         <module>facade</module>
         <module>api</module>
         <module>monitor</module>
+        <module>record</module>
     </modules>
 </project>
