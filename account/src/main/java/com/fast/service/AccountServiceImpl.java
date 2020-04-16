@@ -2,10 +2,12 @@ package com.fast.service;
 
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.fast.api.account.RecordApi;
+import com.fast.model.account.request.AccountPageRequest;
 import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;
 import com.fast.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +21,12 @@ public class AccountServiceImpl {
     @Autowired
     private RecordApi recordApi;
 
-
     public Account getAccountById(int id){
-        Account account = accountRepository.findById(id).orElseGet(Account::new);
-        return account;
+        return accountRepository.findById(id).orElseGet(Account::new);
+    }
+
+    public Page<Account> page(AccountPageRequest requestVo){
+        return accountRepository.findAll(requestVo.build(), requestVo.getPageRequest());
     }
 
     @LcnTransaction

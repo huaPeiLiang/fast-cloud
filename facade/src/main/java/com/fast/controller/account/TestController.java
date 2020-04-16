@@ -1,7 +1,7 @@
 package com.fast.controller.account;
 
 import com.fast.api.account.AccountApi;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.fast.model.ReturnData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,23 +14,39 @@ public class TestController {
     private AccountApi accountApi;
 
     @RequestMapping(value = "/ribbon-test")
-    public String ribbonTest(){
-        return accountApi.ribbonTest();
+    public ReturnData ribbonTest(){
+        try{
+            return ReturnData.success(accountApi.ribbonTest());
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
     }
 
     @RequestMapping("/hystrix-success")
-    public String hystrixSuccess(){
-        return accountApi.hystrixSuccess();
+    public ReturnData hystrixSuccess(){
+        try{
+            return ReturnData.success(accountApi.hystrixSuccess());
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
     }
 
     @RequestMapping("/hystrix-timeout")
-    public String hystrixTimeOut(){
-        return accountApi.hystrixTimeOut();
+    public ReturnData hystrixTimeOut(){
+        try{
+            return ReturnData.success(accountApi.hystrixTimeOut());
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
     }
 
     @RequestMapping("/hystrix-error")
-    public String hystrixError() throws Exception{
-        return accountApi.hystrixError();
+    public ReturnData hystrixError(){
+        try{
+            return ReturnData.success(accountApi.hystrixError());
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
     }
 
 }

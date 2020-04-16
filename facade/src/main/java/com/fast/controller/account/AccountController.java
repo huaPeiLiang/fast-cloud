@@ -2,12 +2,16 @@ package com.fast.controller.account;
 
 
 import com.fast.api.account.AccountApi;
+import com.fast.model.PageResponse;
+import com.fast.model.ReturnData;
+import com.fast.model.account.request.AccountPageRequest;
 import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/account")
@@ -16,14 +20,32 @@ public class AccountController {
     @Autowired
     private AccountApi accountApi;
 
-    @RequestMapping(value = "/get/by-id")
-    public Account getAccountById(@RequestParam("id") int id){
-        return accountApi.getAccountById(id);
+    @GetMapping(value = "/get/by-id")
+    public ReturnData getAccountById(@RequestParam("id") int id){
+        try{
+            return ReturnData.success(accountApi.getAccountById(id));
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
+    }
+
+    @PostMapping(value = "/page")
+    public ReturnData page(@RequestBody @Valid AccountPageRequest requestVo){
+        try{
+            return ReturnData.success(Optional.ofNullable(accountApi.page(requestVo)).orElseGet( PageResponse<Account>::new));
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
     }
 
     @PostMapping(value = "/transfer")
-    public void transfer(@RequestBody @Valid AccountTransferRequest requestVo){
-        accountApi.transfer(requestVo);
+    public ReturnData transfer(@RequestBody @Valid AccountTransferRequest requestVo){
+        try{
+            accountApi.transfer(requestVo);
+            return ReturnData.success();
+        }catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
     };
 
 }
