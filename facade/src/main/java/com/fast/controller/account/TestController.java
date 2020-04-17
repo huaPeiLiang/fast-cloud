@@ -2,6 +2,7 @@ package com.fast.controller.account;
 
 import com.fast.api.account.AccountApi;
 import com.fast.model.ReturnData;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,9 @@ public class TestController {
     public ReturnData ribbonTest(){
         try{
             return ReturnData.success(accountApi.ribbonTest());
-        }catch (Exception e){
+        }catch (HystrixRuntimeException e){
+            return ReturnData.failed(e);
+        } catch (Exception e){
             return ReturnData.failed(e.getMessage());
         }
     }
@@ -26,7 +29,9 @@ public class TestController {
     public ReturnData hystrixSuccess(){
         try{
             return ReturnData.success(accountApi.hystrixSuccess());
-        }catch (Exception e){
+        }catch (HystrixRuntimeException e){
+            return ReturnData.failed(e);
+        } catch (Exception e){
             return ReturnData.failed(e.getMessage());
         }
     }
@@ -35,7 +40,9 @@ public class TestController {
     public ReturnData hystrixTimeOut(){
         try{
             return ReturnData.success(accountApi.hystrixTimeOut());
-        }catch (Exception e){
+        }catch (HystrixRuntimeException e){
+            return ReturnData.failed(e);
+        } catch (Exception e){
             return ReturnData.failed(e.getMessage());
         }
     }
@@ -44,7 +51,9 @@ public class TestController {
     public ReturnData hystrixError(){
         try{
             return ReturnData.success(accountApi.hystrixError());
-        }catch (Exception e){
+        }catch (HystrixRuntimeException e){
+            return ReturnData.failed(e);
+        } catch (Exception e){
             return ReturnData.failed(e.getMessage());
         }
     }

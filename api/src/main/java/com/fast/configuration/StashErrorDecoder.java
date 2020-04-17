@@ -1,13 +1,13 @@
 package com.fast.configuration;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.fast.enums.ErrorEnum;
+import com.fast.model.FastRunTimeException;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.IOException;
+import java.util.Objects;
 
 import static feign.FeignException.errorStatus;
 
@@ -17,13 +17,11 @@ public class StashErrorDecoder implements ErrorDecoder {
     public Exception decode(String methodKey, Response response) {
         try {
             String json = Util.toString(response.body().asReader());
-            JSONObject jsonObject = JSON.parseObject(json);
-            String message = response.reason();
-            if (jsonObject != null){
-                message = jsonObject.getString("message");
-            }
-            if (StringUtils.isNotEmpty(message)){
-                return new RuntimeException(message);
+            String message = "网络异常，请稍后再试！";
+            if (Objects.nonNull(JSON.parseObject(json))){
+                message = JSON.parseObject(json).getString("message");
+                Integer code = ErrorEnum.messageOf(message);
+                return new FastRunTimeException(code,message);
             }
             return errorStatus(methodKey, response);
         } catch (IOException e) {

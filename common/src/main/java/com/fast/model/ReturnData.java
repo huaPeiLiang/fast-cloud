@@ -1,6 +1,7 @@
 package com.fast.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,11 @@ public class ReturnData implements Serializable {
     private String msg;
 
     public ReturnData() {}
+
+    private ReturnData(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
 
     private ReturnData(int code, Object data, String msg) {
         this.code = code;
@@ -41,6 +47,21 @@ public class ReturnData implements Serializable {
 
     public static final ReturnData failed(Object data, String msg) {
         return new ReturnData(CODE_FAILED, data, msg);
+    }
+
+    public static final ReturnData failed(int code, String msg) {
+        return new ReturnData(code, msg);
+    }
+
+    public static final ReturnData failed(FastRunTimeException e){
+        return new ReturnData(e.getCode(), e.getMessage());
+    }
+
+    public static final ReturnData failed(HystrixRuntimeException e){
+        if (e.getCause() instanceof FastRunTimeException){
+            return ReturnData.failed((FastRunTimeException) e.getCause());
+        }
+        return ReturnData.failed(e.getCause().getMessage());
     }
 
     public static final ReturnData failed(int code,Object data, String msg) {
