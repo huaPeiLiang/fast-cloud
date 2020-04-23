@@ -1,9 +1,9 @@
 package com.fast.service;
 
+import com.fast.enums.ErrorEnum;
+import com.fast.model.FastRunTimeException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -43,7 +43,7 @@ public class TestServiceImpl {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        throw new IOException("请求异常");
+        throw new FastRunTimeException(ErrorEnum.网络异常);
     }
 
 }

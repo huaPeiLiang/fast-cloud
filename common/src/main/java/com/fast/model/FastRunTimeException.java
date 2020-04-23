@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class FastRunTimeException extends RuntimeException {
 
-    private Integer code = -1;
+    private String code = "-1";
     private String message ;
 
     public FastRunTimeException(String message) {
@@ -18,7 +18,7 @@ public class FastRunTimeException extends RuntimeException {
         this.code = errorEnum.code;
     }
 
-    public FastRunTimeException(Integer code, String message) {
+    public FastRunTimeException(String code, String message) {
         this.message = message;
         this.code = code;
     }

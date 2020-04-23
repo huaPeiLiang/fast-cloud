@@ -20,7 +20,7 @@ public class StashErrorDecoder implements ErrorDecoder {
             String message = "网络异常，请稍后再试！";
             if (Objects.nonNull(JSON.parseObject(json))){
                 message = JSON.parseObject(json).getString("message");
-                Integer code = ErrorEnum.messageOf(message);
+                String code = ErrorEnum.messageOf(message);
                 return new FastRunTimeException(code,message);
             }
             return errorStatus(methodKey, response);

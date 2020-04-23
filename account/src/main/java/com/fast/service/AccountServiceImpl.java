@@ -1,7 +1,7 @@
 package com.fast.service;
 
 import com.codingapi.txlcn.tc.annotation.LcnTransaction;
-import com.fast.api.account.RecordApi;
+import com.fast.api.record.RecordApi;
 import com.fast.model.account.request.AccountPageRequest;
 import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;

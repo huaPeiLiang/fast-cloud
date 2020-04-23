@@ -1,4 +1,4 @@
-package com.fast.api.account;
+package com.fast.api.record;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
