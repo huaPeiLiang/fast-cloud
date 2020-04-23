@@ -6,5 +6,8 @@
 ### 分支选择
 #### [V1](https://github.com/huaPeiLiang/fast-cloud/tree/v1)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT
 
+### 规范文档
+#### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
+
 ### 交流讨论
 邮箱：martin.hua@foxmail.com
