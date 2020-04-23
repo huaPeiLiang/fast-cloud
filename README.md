@@ -1,5 +1,7 @@
 # V1:快速向导
 
+### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
+
 ###    模块职责
 
 eureka注册中心模块，提供服务注册、服务发现。
