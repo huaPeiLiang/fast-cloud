@@ -1,5 +1,7 @@
 # V1:快速向导
 
+### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
+
 ###    模块职责
 
 eureka注册中心模块，提供服务注册、服务发现。
@@ -54,9 +56,11 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 
 ###    启动项目
 
-一、修改account、record、facade模块中的数据库、Redis、TX-LCN配置。
+一、创建表，建表语句在common模块中model/sql.text中。
 
-二、启动顺序eureka -> config -> account、record、facade -> monitor
+二、修改account、record、facade模块中的数据库、Redis、TX-LCN配置。
+
+三、启动顺序eureka -> config -> account、record、facade -> monitor
     
 ----
 
