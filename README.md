@@ -60,7 +60,7 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 
 一、创建表，建表语句在common模块中model/sql.text中。
 
-二、修改account、record、facade模块中的数据库、Redis、TX-LCN配置。
+二、修改account、record、facade模块中的数据库、Redis、TX-LCN、RabbitMQ配置。
 
 三、启动顺序eureka -> config -> account、record、facade -> monitor
     
@@ -79,7 +79,9 @@ http://127.0.0.1/test/hystrix-error
 
 http://127.0.0.1/test/ribbon-test
     
-重复调用会返回不同的端口号。
+重复调用会返回不同的端口号。在v2中，这个接口也用来测试配置自动刷新，具体步骤如下：
+
+先调用该接口，然后修改公共配置bus.renewal的值。重启config之后调用account模块的actuator/bus-refresh接口。再次请求该接口配置刷新。（关于调用触发配置更新接口的时机，可以自行选择。）
 
 ####    分页测试接口
 
