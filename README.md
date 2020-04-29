@@ -1,5 +1,7 @@
 # V2:快速向导
 
+基于v1增加了RabbitMQ、Bus、Elasticsearch支持。
+
 ### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
 
 ###    模块职责
