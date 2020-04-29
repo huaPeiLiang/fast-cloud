@@ -1,4 +1,4 @@
-# V1:快速向导
+# V2:快速向导
 
 ### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
 
