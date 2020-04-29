@@ -3,21 +3,26 @@ package com.fast.service;
 import com.fast.enums.ErrorEnum;
 import com.fast.model.FastRunTimeException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@RefreshScope
 public class TestServiceImpl {
 
     @Value("${server.port}")
     private String serverPort;
+    @Value("${bus.renewal:null}")
+    private String busRenewal;
+
 
     /**
      * 负载均衡测试方法
      * */
     public String ribbonTest(){
-        return serverPort;
+        return serverPort.concat(":").concat(busRenewal);
     }
 
     /**
