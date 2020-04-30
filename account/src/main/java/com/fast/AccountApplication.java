@@ -1,5 +1,6 @@
 package com.fast;
 
+import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients
 @EnableAsync
 @EnableHystrix
+@EnableDistributedTransaction
 public class AccountApplication {
 
     public static void main(String[] args) {

@@ -11,9 +11,8 @@
 
 <modelVersion>4.0.0</modelVersion>
 <groupId>com.fast.cloud</groupId>
-<artifactId>facade</artifactId>
+<artifactId>elasticsearch</artifactId>
 <version>1.0-SNAPSHOT</version>
-<packaging>jar</packaging>
 
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,6 +46,12 @@
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -91,32 +96,16 @@
         <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
-    <!-- tx-lcn分布式事务 -->
-    <dependency>
-        <groupId>com.codingapi.txlcn</groupId>
-        <artifactId>txlcn-tc</artifactId>
-        <version>5.0.2.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>com.codingapi.txlcn</groupId>
-        <artifactId>txlcn-txmsg-netty</artifactId>
-        <version>5.0.2.RELEASE</version>
-    </dependency>
-
-    <!-- hystrix -->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-
     <!-- MQ -->
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+    </dependency>
+
+    <!-- elasticsearch -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
     </dependency>
 
 </dependencies>

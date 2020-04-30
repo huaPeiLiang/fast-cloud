@@ -10,7 +10,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.fast</groupId>
+    <groupId>com.fast.cloud</groupId>
     <artifactId>record</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
