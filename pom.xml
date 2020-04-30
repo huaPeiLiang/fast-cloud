@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
-
         <module>common</module>
         <module>eureka</module>
         <module>config</module>
@@ -18,5 +17,7 @@
         <module>api</module>
         <module>monitor</module>
         <module>record</module>
+        <module>elasticsearch</module>
+        <module>elasticsearch-api</module>
     </modules>
 </project>
