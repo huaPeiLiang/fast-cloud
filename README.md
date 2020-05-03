@@ -8,7 +8,7 @@
   * 适用于开发人员不多，但需要通过微服务实现较高负载的项目。使用微服务常见组件，入手难度较低，可以快速开始业务开发。
   * 提供：异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口等。
   
-* #### V2：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT、RabbitMQ、Bus、Elasticsearch
+* #### [V2](https://github.com/huaPeiLiang/fast-cloud/tree/v2)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT、RabbitMQ、Bus、Elasticsearch
   * 适用于需要满足较大请求量、对搜索有要求的项目。需要对消息中间件和Elasticsearch有一定的了解。
   * 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口、Elasticsearch测试接口等。
 
