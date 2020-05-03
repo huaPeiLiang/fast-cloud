@@ -14,6 +14,10 @@ common底层公共模块，以jar包形式存在，提供公共的工具类、�
 
 api服务间调用公共模块，以jar包形式存在，提供业务模块调用入口、降级处理。
 
+elasticsearch-api模块，提供elasticsearch的服务调用。
+
+elasticsearch搜索引擎实现模块，提供搜索引擎相关实现。
+
 account、record业务模块，提供具体的业务处理接口。
 
 facade对外模块，提供外界调用微服务的入口、拦截器、过滤器等。
@@ -32,11 +36,15 @@ config依赖于eureka。
 
 common不依赖于任何模块。
 
+elasticsearch-api不依赖于任何模块。
+
 api依赖于common。
+
+elasticsearch依赖于elasticsearch-api模块。
 
 account、record依赖于eureka、config、api，业务模块之间弱依赖。
 
-facade依赖于作eureka、config、api。弱依赖于业务模块。
+facade依赖于作eureka、config、api、elasticsearch-api。弱依赖于业务模块。
 
 monitor依赖于作eureka。弱依赖于业务模块。
 
@@ -60,9 +68,9 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 
 一、创建表，建表语句在common模块中model/sql.text中。
 
-二、修改account、record、facade模块中的数据库、Redis、TX-LCN、RabbitMQ配置。
+二、修改account、record、facade模块中的数据库、Redis、TX-LCN、RabbitMQ、Elasticsearch配置。
 
-三、启动顺序eureka -> config -> account、record、facade -> monitor
+三、启动顺序eureka -> config -> account、record、elasticsearch、facade -> monitor
     
 ----
 
@@ -90,3 +98,13 @@ http://127.0.0.1/account/page
 ####  分布式事务测试接口（需要先在account模块的AccountServiceImpl类中该方法手动抛错）
 
 http://127.0.0.1/account/transfer
+
+#### Elasticsearch测试类
+
+http://127.0.0.1/elasticsearch/avg/price-by-brand
+
+注意在进行调用该测试接口之前，需要进行前置条件准备。找到elasticsearch模块中的test文件夹下EsDemoApplicationTest测试类。
+
+一、执行createIndex测试方法创建索引、类型。
+
+二、执行insertList测试方法批量插入数据。
