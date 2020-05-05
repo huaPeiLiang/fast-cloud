@@ -108,3 +108,5 @@ http://127.0.0.1/elasticsearch/avg/price-by-brand
 一、执行createIndex测试方法创建索引、类型。
 
 二、执行insertList测试方法批量插入数据。
+
+三、调用测试接口。
