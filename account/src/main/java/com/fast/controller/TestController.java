@@ -1,5 +1,6 @@
 package com.fast.controller;
 
+import com.fast.service.MqServiceImpl;
 import com.fast.service.TestServiceImpl;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ public class TestController {
 
     @Autowired
     private TestServiceImpl testService;
+    @Autowired
+    private MqServiceImpl mqService;
 
     @RequestMapping(value = "/ribbon-test")
     public String ribbonTest(){
@@ -34,6 +37,12 @@ public class TestController {
     @RequestMapping("/hystrix-error")
     public String hystrixError() throws Exception{
         return testService.hystrixError();
+    }
+
+    @HystrixCommand
+    @RequestMapping("/mq")
+    public void mqTest(){
+        mqService.mqTestSend();
     }
 
 }

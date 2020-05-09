@@ -58,4 +58,16 @@ public class TestController {
         }
     }
 
+    @RequestMapping("/mq")
+    public ReturnData mqTest(){
+        try{
+            accountApi.mqTest();
+            return ReturnData.success();
+        }catch (HystrixRuntimeException e){
+            return ReturnData.failed(e);
+        } catch (Exception e){
+            return ReturnData.failed(e.getMessage());
+        }
+    }
+
 }

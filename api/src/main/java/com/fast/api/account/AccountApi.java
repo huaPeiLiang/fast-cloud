@@ -6,6 +6,7 @@ import com.fast.model.PageResponse;
 import com.fast.model.account.request.AccountPageRequest;
 import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +44,9 @@ public interface AccountApi {
 
     @GetMapping("/test/hystrix-error")
     String hystrixError() throws Exception;
+
+    @GetMapping("/test/mq")
+    void mqTest();
+
 
 }
