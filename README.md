@@ -99,6 +99,10 @@ http://127.0.0.1/account/page
 
 http://127.0.0.1/account/transfer
 
+#### RabbitMQ测试接口
+
+http://127.0.0.1/test/mq
+
 #### Elasticsearch测试类
 
 http://127.0.0.1/elasticsearch/avg/price-by-brand
