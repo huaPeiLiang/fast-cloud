@@ -11,6 +11,9 @@
 * #### [V2](https://github.com/huaPeiLiang/fast-cloud/tree/v2)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT、RabbitMQ、Bus、Elasticsearch
   * 适用于需要满足较大请求量、对搜索有要求的项目。需要对消息中间件和Elasticsearch有一定的了解。
   * 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口、RabbitMQ测试接口、Elasticsearch测试接口等。
+  
+* #### [V3]()：Nacos、OpenFeign、Ribbon、Hystrix、Tx-Lcn、MyBatis-Plus、Redis、Mysql、JWT
+  * 即将到来...
 
 ### 规范文档
 #### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
