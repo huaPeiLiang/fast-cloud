@@ -72,27 +72,62 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 ###   测试
 ####    Hystrix测试接口(可以修改facade模块hystrix配置来调整降级、断路)
 
-http://127.0.0.1/test/hystrix-success
+```json
+测试hystrix断路器成功响应
+接口地址：http://127.0.0.1/test/hystrix-success
+接口类型：GET
+请求参数：无
+```
 
-http://127.0.0.1/test/hystrix-timeout
+```json
+测试hystrix断路器超时响应
+接口地址：http://127.0.0.1/test/hystrix-timeout
+接口类型：GET
+请求参数：无
+```
 
-http://127.0.0.1/test/hystrix-error
+```json
+测试hystrix断路器失败响应
+接口地址：http://127.0.0.1/test/hystrix-error
+接口类型：GET
+请求参数：无
+```
 
 ####    负载均衡测试接口（启动两个account模块，并配置不同的端口号）
 
-http://127.0.0.1/test/ribbon-test
-    
-重复调用会返回不同的端口号。在v2中，这个接口也用来测试配置自动刷新，具体步骤如下：
+在v2中，这个接口也用来测试配置自动刷新，具体步骤如下：
 
 先调用该接口，然后修改公共配置bus.renewal的值。重启config之后调用account模块的actuator/bus-refresh接口。再次请求该接口配置刷新。（关于调用触发配置更新接口的时机，可以自行选择。）
 
+```json
+负载均衡测试
+接口地址：http://127.0.0.1/test/ribbon-test
+接口类型：GET
+请求参数：无
+请求响应：返回不同的端口号
+```
+
 ####    分页测试接口
 
-http://127.0.0.1/account/page
+```json
+分页测试接口
+接口地址：http://127.0.0.1/account/page
+接口类型：POST
+请求参数：{}
+```
 
 ####  分布式事务测试接口（需要先在account模块的AccountServiceImpl类中该方法手动抛错）
 
-http://127.0.0.1/account/transfer
+```json
+分布式事务测试接口
+接口地址：http://127.0.0.1/account/transfer
+接口类型：POST
+请求参数：{
+    "sourceAccountId" : 1,
+    "targetAccountId" : 2,
+    "amount" : 500
+}
+```
 
 #### RabbitMQ测试接口
 
