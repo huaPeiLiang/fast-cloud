@@ -111,8 +111,8 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 接口地址：http://127.0.0.1/account/transfer
 接口类型：POST
 请求参数：{
-    sourceAccountId:1,
-    targetAccountId:2,
-    amount:500
+    "sourceAccountId" : 1,
+    "targetAccountId" : 2,
+    "amount" : 500
 }
 ```
