@@ -62,24 +62,57 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 ----
 
 ###   测试
-####    Hystrix测试接口(可以修改facade模块hystrix配置来调整降级、断路)
+####    Hystrix相关测试接口(可以修改facade模块hystrix配置来调整降级、断路)
 
-http://127.0.0.1/test/hystrix-success
+```json
+测试hystrix断路器成功响应
+接口地址：http://127.0.0.1/test/hystrix-success
+接口类型：GET
+请求参数：无
+```
 
-http://127.0.0.1/test/hystrix-timeout
+```json
+测试hystrix断路器超时响应
+接口地址：http://127.0.0.1/test/hystrix-timeout
+接口类型：GET
+请求参数：无
+```
 
-http://127.0.0.1/test/hystrix-error
+```json
+测试hystrix断路器失败响应
+接口地址：http://127.0.0.1/test/hystrix-error
+接口类型：GET
+请求参数：无
+```
 
 ####    负载均衡测试接口（启动两个account模块，并配置不同的端口号）
 
-http://127.0.0.1/test/ribbon-test
-    
-重复调用会返回不同的端口号。
+```json
+负载均衡测试
+接口地址：http://127.0.0.1/test/ribbon-test
+接口类型：GET
+请求参数：无
+请求响应：返回不同的端口号
+```
 
 ####    分页测试接口
 
-http://127.0.0.1/account/page
+```json
+分页测试接口
+接口地址：http://127.0.0.1/account/page
+接口类型：POST
+请求参数：{}
+```
 
 ####  分布式事务测试接口（需要先在account模块的AccountServiceImpl类中该方法手动抛错）
 
-http://127.0.0.1/account/transfer
+```json
+分布式事务测试接口
+接口地址：http://127.0.0.1/account/transfer
+接口类型：POST
+请求参数：{
+    sourceAccountId:1,
+    targetAccountId:2,
+    amount:500
+}
+```
