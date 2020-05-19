@@ -131,11 +131,21 @@ txlcn-txmsg-netty: 5.0.2.RELEASE
 
 #### RabbitMQ测试接口
 
-http://127.0.0.1/test/mq
+```json
+向队列中添加消息
+接口地址：http://127.0.0.1/test/mq
+接口类型：GET
+请求参数：无
+```
 
 #### Elasticsearch测试类
 
-http://127.0.0.1/elasticsearch/avg/price-by-brand
+```json
+获取品牌所有商品的平均售价
+接口地址：http://127.0.0.1/elasticsearch/avg/price-by-brand
+接口类型：GET
+请求参数：无
+```
 
 注意在进行调用该测试接口之前，需要进行前置条件准备。找到elasticsearch模块中的test文件夹下EsDemoApplicationTest测试类。
 
