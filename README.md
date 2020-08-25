@@ -5,11 +5,11 @@
 
 ### 分支选择
 * #### [V1](https://github.com/huaPeiLiang/fast-cloud/tree/v1)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT
-  * 适用于开发人员不多，但需要通过微服务实现较高负载的项目。使用微服务常见组件，入手难度较低，可以快速开始业务开发。
+  * 前提条件：Tx-Lcn分布式事务基于TM服务才能发挥作用，需要提前搭建好TM服务。
   * 提供：异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口等。
   
 * #### [V2](https://github.com/huaPeiLiang/fast-cloud/tree/v2)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT、RabbitMQ、Bus、Elasticsearch
-  * 适用于需要满足较大请求量、对搜索有要求的项目。需要对消息中间件和Elasticsearch有一定的了解。
+  * 前提条件：Tx-Lcn分布式事务基于TM服务才能发挥作用，需要提前搭建好TM服务。
   * 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口、RabbitMQ测试接口、Elasticsearch测试接口等。
   
 * #### [V3]()：Nacos、OpenFeign、Ribbon、Sentinel、MyBatis-Plus、Redis、Mysql、JWT
