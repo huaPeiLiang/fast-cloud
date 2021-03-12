@@ -1,0 +1,14 @@
+CREATE TABLE `account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT NULL,
+  `amount` double(64,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+
+CREATE TABLE `tranRecord` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `accountId` int(11) NOT NULL,
+  `changeAmount` double(64,0) DEFAULT NULL,
+  `changeType` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
