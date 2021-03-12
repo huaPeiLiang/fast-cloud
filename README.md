@@ -12,7 +12,10 @@
   * 前提条件：Tx-Lcn分布式事务基于TM服务才能发挥作用，需要提前搭建好TM服务。
   * 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口、RabbitMQ测试接口、Elasticsearch测试接口等。
   
-* #### [V3]()：Nacos、OpenFeign、Ribbon、Sentinel、MyBatis-Plus、Redis、Mysql、JWT
+* #### [V3]()：Nacos、OpenFeign、Ribbon、MyBatis-Plus、Redis、Mysql、JWT
+  * 即将到来...
+
+* #### [V4]()：Nacos、OpenFeign、Ribbon、MyBatis-Plus、Redis、Mysql、JWT、Sentinel、Steata、RabbitMQ
   * 即将到来...
 
 ### 规范文档
