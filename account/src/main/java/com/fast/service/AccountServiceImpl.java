@@ -1,33 +1,27 @@
-//package com.fast.service;
-//
-//import com.fast.api.record.RecordApi;
-//import com.fast.model.account.request.AccountPageRequest;
-//import com.fast.model.account.request.AccountTransferRequest;
-//import com.fast.model.account.root.Account;
-//import com.fast.repository.AccountRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.domain.Page;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.Optional;
-//
-//@Service
-//public class AccountServiceImpl {
-//
-//    @Autowired
-//    private AccountRepository accountRepository;
-//    @Autowired
-//    private RecordApi recordApi;
-//
-//    public Account getAccountById(int id){
-//        return accountRepository.findById(id).orElseGet(Account::new);
-//    }
-//
+package com.fast.service;
+
+import com.fast.api.record.RecordApi;
+import com.fast.mapper.AccountMapper;
+import com.fast.model.account.root.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AccountServiceImpl {
+
+    @Autowired
+    private AccountMapper accountMapper;
+    @Autowired
+    private RecordApi recordApi;
+
+    public Account getAccountById(int id){
+        return accountMapper.selectById(id);
+    }
+
 //    public Page<Account> page(AccountPageRequest requestVo){
 //        return accountRepository.findAll(requestVo.build(), requestVo.getPageRequest());
 //    }
-//
+
 //    @Transactional
 //    public void transfer(AccountTransferRequest requestVo){
 //        Optional<Account> sourceAccountOp = accountRepository.findFirstByIdAndAmountIsGreaterThanEqual(requestVo.getSourceAccountId(), requestVo.getAmount());
@@ -53,5 +47,5 @@
 //        recordApi.add(requestVo.getSourceAccountId(),requestVo.getAmount(),"支出");
 //        recordApi.add(requestVo.getTargetAccountId(),requestVo.getAmount(),"收入");
 //    }
-//
-//}
+
+}

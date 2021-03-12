@@ -18,7 +18,7 @@ public class TestController {
     }
 
     @RequestMapping("/get-dynamic-configuration-name")
-    public String hystrixSuccess(){
+    public String getDynamicConfigurationName(){
         return testService.getDynamicConfigurationName();
     }
 
