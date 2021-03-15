@@ -1,7 +1,9 @@
 package com.fast.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fast.api.record.RecordApi;
 import com.fast.mapper.AccountMapper;
+import com.fast.model.account.request.AccountPageRequest;
 import com.fast.model.account.root.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,11 @@ public class AccountServiceImpl {
         return accountMapper.selectById(id);
     }
 
-//    public Page<Account> page(AccountPageRequest requestVo){
-//        return accountRepository.findAll(requestVo.build(), requestVo.getPageRequest());
-//    }
+    public Page<Account> page(AccountPageRequest request){
+        Page<Account> page = new Page<>();
+        page.setOptimizeCountSql(true);
+        return accountMapper.pageAccount(page, request);
+    }
 
 //    @Transactional
 //    public void transfer(AccountTransferRequest requestVo){
