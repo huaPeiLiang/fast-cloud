@@ -1,6 +1,7 @@
 package com.fast.controller.account;
 
 import com.fast.api.account.AccountApi;
+import com.fast.model.FastRunTimeException;
 import com.fast.model.ReturnData;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class TestController {
     public ReturnData ribbonTest(){
         try{
             return ReturnData.success(accountApi.ribbonTest());
-        }catch (HystrixRuntimeException e){
-            return ReturnData.failed(e);
+        }catch (FastRunTimeException e){
+            return ReturnData.failed(e.getMessage());
         } catch (Exception e){
             return ReturnData.failed(e.getMessage());
         }
@@ -29,8 +30,8 @@ public class TestController {
     public ReturnData hystrixSuccess(){
         try{
             return ReturnData.success(accountApi.getDynamicConfigurationName());
-        }catch (HystrixRuntimeException e){
-            return ReturnData.failed(e);
+        }catch (FastRunTimeException e){
+            return ReturnData.failed(e.getMessage());
         } catch (Exception e){
             return ReturnData.failed(e.getMessage());
         }
