@@ -3,6 +3,7 @@ package com.fast.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fast.model.PageResponse;
 import com.fast.model.account.request.AccountPageRequest;
+import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;
 import com.fast.service.AccountServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -28,10 +29,10 @@ public class AccountController {
     public Page<Account> page(@RequestBody @Valid AccountPageRequest requestVo){
         return accountService.page(requestVo);
     }
-//
-//    @PostMapping(value = "/transfer")
-//    public void transfer(@RequestBody @Valid AccountTransferRequest requestVo){
-//        accountService.transfer(requestVo);
-//    };
+
+    @PostMapping(value = "/transfer")
+    public void transfer(@RequestBody @Valid AccountTransferRequest requestVo){
+        accountService.transfer(requestVo);
+    };
 
 }

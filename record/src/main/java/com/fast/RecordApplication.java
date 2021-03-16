@@ -10,10 +10,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients
 @EnableDiscoveryClient
 @EnableAsync
-public class AccountApplication {
+public class RecordApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AccountApplication.class, args);
+        SpringApplication.run(RecordApplication.class, args);
     }
 
 }
