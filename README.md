@@ -5,15 +5,16 @@
 
 ### 分支选择
 * #### [V1](https://github.com/huaPeiLiang/fast-cloud/tree/v1)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT
-  * 前提条件：Tx-Lcn分布式事务基于TM服务才能发挥作用，需要提前搭建好TM服务。
+  * 前提条件：有可使用的Mysql服务、redis服务、TM服务（Tx-Lcn分布式事务基于TM服务才能发挥作用）。
   * 提供：异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口等。
   
 * #### [V2](https://github.com/huaPeiLiang/fast-cloud/tree/v2)：Eureka、Config、OpenFeign、Ribbon、Hystrix、Tx-Lcn、JPA、Redis、Mysql、JWT、RabbitMQ、Bus、Elasticsearch
-  * 前提条件：Tx-Lcn分布式事务基于TM服务才能发挥作用，需要提前搭建好TM服务。
-  * 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口、RabbitMQ测试接口、Elasticsearch测试接口等。
+  * 前提条件：有可使用的Mysql服务、redis服务、TM服务（Tx-Lcn分布式事务基于TM服务才能发挥作用）、Elasticsearch服务、RabbitMQ服务。
+  * 提供：异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、断路器测试接口、JPA查询、分页测试接口、分布式事务测试接口、RabbitMQ测试接口、Elasticsearch测试接口等。
   
 * #### [V3]()：Nacos、OpenFeign、Ribbon、MyBatis-Plus、Redis、Mysql、JWT
-  * 即将到来...
+  * 前提条件：有可使用的Mysql服务、redis服务、Nacos服务。
+  * 提供：异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、MybatisPlus查询、分页测试接口。
 
 * #### [V4]()：Nacos、OpenFeign、Ribbon、MyBatis-Plus、Redis、Mysql、JWT、Sentinel、Steata、RabbitMQ
   * 即将到来...
