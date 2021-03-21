@@ -37,6 +37,10 @@ spring-cloud：Greenwich.M3
 
 lombok：1.18.12
 
+nacos-config：2.1.0.RELEASE
+
+nacos-discovery：2.1.0.RELEASE
+
 ----
 
 ###    启动项目
