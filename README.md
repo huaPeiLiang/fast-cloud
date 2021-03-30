@@ -49,7 +49,7 @@ nacos-discovery：2.1.0.RELEASE
 
 二、nacos配置文件在common模块中的config文件夹中，需要在nacos中创建对于的配置。
 
-三、修改account、record、facade模块中的数据库、Redis、TX-LCN、RabbitMQ、Elasticsearch配置。
+三、修改account、record、facade模块中的数据库、Redis、nacos配置。
     
 ----
 
