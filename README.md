@@ -6,7 +6,9 @@
 
 模块名称 | 端口 |  职责  
 -|-|-
-nacos | 8848 | 注册、配置中心模块 |
+nacos | 8848 | 注册、配置中心 |
+sentinel | 8080 | 限流、熔断控制台 |
+seata | 8091 | 分布式事务 |
 common |      | 底层公共模块，以jar包形式存在，提供公共的工具类、实体类、枚举类、请求响应类、异常类 |
 api    |      | 服务间调用公共模块，以jar包形式存在，提供业务模块调用入口、降级处理 |
 account| 7001 | 业务处理，提供示范代码 |
@@ -41,6 +43,14 @@ nacos-config：2.1.0.RELEASE
 
 nacos-discovery：2.1.0.RELEASE
 
+spring-cloud-starter-alibaba-seata： 2.1.2.RELEASE
+
+seata-spring-boot-starter：1.4.0
+
+spring-cloud-starter-alibaba-sentinel：0.9.0.RELEASE
+
+sentinel-datasource-nacos：1.5.2
+
 ----
 
 ###    启动项目
@@ -49,7 +59,7 @@ nacos-discovery：2.1.0.RELEASE
 
 二、nacos配置文件在common模块中的config文件夹中，需要在nacos中创建对于的配置。
 
-三、修改account、record、facade模块中的数据库、Redis、TX-LCN、RabbitMQ、Elasticsearch配置。
+三、修改account、record、facade模块中的数据库、Redis、nacos、sentinel、seata配置。
     
 ----
 
