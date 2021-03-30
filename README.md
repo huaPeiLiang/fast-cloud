@@ -16,8 +16,9 @@
   * **前提条件：** 有可使用的Mysql服务、redis服务、Nacos服务。
   * **提供：** 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、MybatisPlus查询、分页测试接口。
 
-* #### [V4]()：Nacos、OpenFeign、Ribbon、MyBatis-Plus、Redis、Mysql、JWT、Sentinel、Steata、RabbitMQ
-  * 即将到来...
+* #### [V4](https://github.com/huaPeiLiang/fast-cloud/tree/v4)：Nacos、OpenFeign、Ribbon、MyBatis-Plus、Redis、Mysql、JWT、Sentinel、Steata
+  * **前提条件：** 有可使用的Mysql服务、redis服务、Nacos服务、Sentinel服务、Seata服务。
+  * **提供：** 异常处理及统一返回、Radis相关操作及分布式锁、Http远程服务调用、服务配置自动刷新、PDF水印 替换 电子签章、邮件发送、JWT加密解密、MybatisPlus查询、分页测试接口、限流熔断测试接口、分布式事务测试接口。
 
 ### 规范文档
 #### [代码规范](https://github.com/huaPeiLiang/fast-cloud/wiki)
