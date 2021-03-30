@@ -105,6 +105,17 @@
         <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        <version>0.9.0.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba.csp</groupId>
+        <artifactId>sentinel-datasource-nacos</artifactId>
+        <version>1.5.2</version>
+    </dependency>
+
 </dependencies>
 
 <dependencyManagement>

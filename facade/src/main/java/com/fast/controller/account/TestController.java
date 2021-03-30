@@ -1,5 +1,6 @@
 package com.fast.controller.account;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.fast.api.account.AccountApi;
 import com.fast.model.FastRunTimeException;
 import com.fast.model.ReturnData;
@@ -16,6 +17,7 @@ public class TestController {
     private AccountApi accountApi;
 
     @RequestMapping(value = "/ribbon-test")
+    @SentinelResource(value = "/test/ribbon-test", blockHandler = "ribbonTestBlockHandler", blockHandlerClass = TestBlockHandler.class)
     public ReturnData ribbonTest(){
         try{
             return ReturnData.success(accountApi.ribbonTest());
