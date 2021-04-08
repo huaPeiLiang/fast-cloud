@@ -59,7 +59,7 @@ sentinel-datasource-nacos：1.5.2
 
 二、nacos配置文件在common模块中的config文件夹中，需要在nacos中创建对于的配置。
 
-三、修改account、record、facade模块中的数据库、Redis、nacos、sentinel、seata配置。
+三、修改account、record、facade模块中的数据库、Redis、nacos、sentinel、seata配置。项目中提供了简单的sentinel配置，文件存放在facade模块src/main/resources/sentinel文件夹下。
     
 ----
 
@@ -72,6 +72,17 @@ sentinel-datasource-nacos：1.5.2
 接口类型：GET
 请求参数：无
 请求响应：返回不同的端口号
+```
+
+####    限流熔断测试接口
+
+```json
+限流熔断测试
+接口地址：http://127.0.0.1/test/ribbon-test
+接口类型：GET
+请求参数：无
+说    明：修改sentinel配置，争对资源名（/test/ribbon-test）进行限流配置，修改为QPS：1。如需测试熔断可在该接口中进行模拟报错测试。
+请求响应：频繁调用，会出现限流错误提示。
 ```
 
 ####    动态配置测试接口
@@ -102,10 +113,10 @@ sentinel-datasource-nacos：1.5.2
 请求参数：{}
 ```
 
-####  多模块调用测试接口
+####  分布式事务测试接口
 
 ```json
-多模块调用测试接口
+分布式事务测试接口
 接口地址：http://127.0.0.1/account/transfer
 接口类型：POST
 请求参数：{
