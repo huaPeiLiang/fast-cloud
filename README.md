@@ -55,12 +55,16 @@ sentinel-datasource-nacos：1.5.2
 
 ###    启动项目
 
-一、创建表，建表语句在common模块中model/sql.text中。
-
-二、nacos配置文件在common模块中的config文件夹中，需要在nacos中创建对于的配置。
-
-三、修改account、record、facade模块中的数据库、Redis、nacos、sentinel、seata配置。项目中提供了简单的sentinel配置，文件存放在facade模块src/main/resources/sentinel文件夹下。
+一、自行准备mysql、redis、nacos、sentinel、seata等服务。
     
+二、执行common模块下sql文件夹中的sql脚本。其中‘global_table’、‘branch_table’、‘lock_table’三张表需要放到seata服务引用的库中，‘undo_log’表需要放到业务库中。
+    
+三、修改配置文件配置，将mysql、redis、nacos、sentinel、seata等配置修改成自己的服务地址。
+    
+四、导入nacos配置，将common模块config文件夹下的common.properties配置文件添加到nacos中。
+    
+五、如果需要测试sentinel限流功能，可以直接将facade模块下sentine文件夹下的配置添加到nacos中。
+
 ----
 
 ###   测试
