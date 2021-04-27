@@ -5,7 +5,7 @@ import com.fast.model.ReturnData;
 
 public class TestBlockHandler {
 
-    public ReturnData ribbonTestBlockHandler(BlockException e){
+    public static ReturnData ribbonTestBlockHandler(BlockException e){
         return ReturnData.failed(e.getMessage());
     }
 
