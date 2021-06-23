@@ -14,11 +14,11 @@ import java.net.URI;
 
 @Component
 public class MailUtil {
-    @Value("${mail.exchange.domain}")
+    @Value("${mail.exchange.domain:}")
     private String exchangeDomain;
-    @Value("${mail.exchange.user}")
+    @Value("${mail.exchange.user:}")
     private String exchangeUser;
-    @Value("${mail.exchange.password}")
+    @Value("${mail.exchange.password:}")
     private String exchangePassword;
     @Value("${mail.exchange.server:outlook.live.com}")
     private String exchangeServer;

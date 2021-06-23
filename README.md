@@ -62,8 +62,17 @@ sentinel-datasource-nacos：1.5.2
 三、修改配置文件配置，将mysql、redis、nacos、sentinel、seata等配置修改成自己的服务地址。
     
 四、导入nacos配置，将common模块config文件夹下的common.properties配置文件添加到nacos中。
+
+五、项目中的seata配置使用了nacos配置方式，需要进行如下几步操作，如果不使用nacos配置方式只需要将application.properties中的配置进行注释。如果使用nacos配置方式可以将file.conf、register.conf文件删除。
+
+①在nacos控制台新建命名空间，将生成的命名空间ID复制下来，替换seata.config.nacos.namespace配置的值为新生成的命名空间ID。
+
+②修改facade中config.txt文件中的配置。
+
+③windows中执行“sh nacos-config.sh -h www.kinotools.cn -p 8848 -g SEATA_GROUP -t 49a14e41-33db-4ad6-9823-4efd220e1eeb -u nacos -w nacos
+”语句，该语句将初始化nacos中seata需要的配置，-t 后面同样替换为新生成的命名空间ID。
     
-五、如果需要测试sentinel限流功能，可以直接将facade模块下sentine文件夹下的配置添加到nacos中。
+六、如果需要测试sentinel限流功能，可以直接将facade模块下sentine文件夹下的配置添加到nacos中。
 
 ----
 
