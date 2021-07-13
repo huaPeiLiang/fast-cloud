@@ -24,4 +24,7 @@ public class TranRecord implements Serializable {
 
     @TableField(value = "changeType",exist = true)
     private String changeType;
+
+    @TableField(value = "tenant_id",exist = true)
+    private Long tenantId;
 }
