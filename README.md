@@ -74,6 +74,8 @@ sentinel-datasource-nacos：1.5.2
     
 六、如果需要测试sentinel限流功能，可以直接将facade模块下sentine文件夹下的配置添加到nacos中。
 
+七、多租户拦截功能代码在api模块下的com.fast.configuration.MybatisPlusConfig中，可以根据自身需求修改租户ID获取方式及忽略拦截请求。
+
 ----
 
 ###   测试
