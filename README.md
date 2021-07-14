@@ -141,4 +141,15 @@ sentinel-datasource-nacos：1.5.2
 }
 ```
 
+####  多租户测试接口
+
+```json
+多租户测试接口
+接口地址：http://127.0.0.1/record/query
+接口类型：GET
+请求参数：{}
+header参数：TenantId : 租户Id
+说明：关注控制台打印sql，会自动拼接租户条件
+```
+
 
