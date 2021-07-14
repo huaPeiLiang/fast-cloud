@@ -10,8 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients
 @EnableDiscoveryClient
 @EnableAsync
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-//@SpringBootApplication
+@SpringBootApplication
 public class AccountApplication {
 
     public static void main(String[] args) {
