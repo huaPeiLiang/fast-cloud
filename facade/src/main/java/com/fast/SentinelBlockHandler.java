@@ -3,7 +3,7 @@ package com.fast;
 import com.alibaba.csp.sentinel.adapter.servlet.callback.UrlBlockHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.fast.model.ReturnData;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

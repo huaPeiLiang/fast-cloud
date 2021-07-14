@@ -7,7 +7,7 @@ import com.fast.model.FastRunTimeException;
 import com.fast.model.account.request.AccountPageRequest;
 import com.fast.model.account.request.AccountTransferRequest;
 import com.fast.model.account.root.Account;
-import io.seata.spring.annotation.GlobalTransactional;
+//import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

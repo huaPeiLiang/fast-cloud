@@ -4,7 +4,6 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.fast.api.account.AccountApi;
 import com.fast.model.FastRunTimeException;
 import com.fast.model.ReturnData;
-import com.netflix.hystrix.exception.HystrixRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
