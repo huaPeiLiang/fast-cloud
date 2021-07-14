@@ -10,6 +10,7 @@ CREATE TABLE `tranRecord` (
   `accountId` int(11) NOT NULL,
   `changeAmount` double(64,0) DEFAULT NULL,
   `changeType` varchar(16) DEFAULT NULL,
+  `tenant_id` bigint(16) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
 
