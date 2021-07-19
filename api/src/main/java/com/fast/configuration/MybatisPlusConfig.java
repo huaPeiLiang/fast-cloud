@@ -43,7 +43,7 @@ public class MybatisPlusConfig {
             public boolean ignoreTable(String tableName) {
                 // 存放无需拼接多租户条件的表名
                 Map<String,Boolean> tableNameMap = new HashMap<>();
-                tableNameMap.put(" ",true);
+                tableNameMap.put("account",true);
                 if (tableNameMap.get(tableName) != null){
                     return tableNameMap.get(tableName);
                 }else{
@@ -68,10 +68,13 @@ public class MybatisPlusConfig {
     public static Long getTenantIdByHeader() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         Assert.notNull(servletRequestAttributes, "header 获取异常");
+        Long tenantId = null;
         // 获取请求头中的商户id
-        Long tenantId = Long.parseLong(servletRequestAttributes.getRequest().getHeader("TenantId"));
-        // 获取请求参数中的商户id
-        // String corpId = request.getParameter("corpId");
+        try{
+            tenantId = Long.parseLong(servletRequestAttributes.getRequest().getHeader("TenantId"));
+        }catch (Exception e){
+            throw new FastRunTimeException("获取租户信息失败");
+        }
         Assert.notNull(tenantId, "获取租户信息失败");
         return tenantId;
     }
