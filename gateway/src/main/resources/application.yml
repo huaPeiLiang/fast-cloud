@@ -1,0 +1,36 @@
+
+server:
+  port: 90
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  application:
+    name: GATEWAY
+  cloud:
+     nacos:
+       discovery:
+        server-addr: 127.0.0.1:8848
+       config:
+        prefix: common
+        file-extension: properties
+     gateway:
+       discovery:
+         locator:
+           enabled: true
+           lower-case-service-id: false
+       routes:
+         - id: FACADE
+           uri: grayLb://FACADE
+           predicates:
+              - Path=/**
+
