@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "RECORD")
+@FeignClient(name = "RECORD${VERSION:}")
 @Component
 public interface RecordApi {
 

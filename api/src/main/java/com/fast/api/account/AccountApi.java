@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@FeignClient(name = "ACCOUNT",configuration = {StashErrorDecoder.class, FeignRequest.class})
+@FeignClient(name = "ACCOUNT${VERSION:}",configuration = {StashErrorDecoder.class, FeignRequest.class})
 @Component
 public interface AccountApi {
 
