@@ -16,8 +16,6 @@ public class TokenResponse implements Serializable {
 
     private static final long serialVersionUID = -935438290887411032L;
 
-    private String tokenId;
-
     private String accessToken;
 
     private String refreshToken;

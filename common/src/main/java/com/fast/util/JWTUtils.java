@@ -182,30 +182,6 @@ public class JWTUtils {
     }
 
     /**
-     * 根据tokenId获取token信息
-     * */
-    public static TokenResponse getAccessTokenAndRefreshTokenByTokenId(String tokenId) {
-        TokenResponse tokenResponse = TokenResponse.builder().build();
-        tokenResponse.setTokenId(tokenId);
-        if (!StringUtils.isEmpty(tokenId)){
-            Map<Object, Object> tokenMap = redisUtils.hGetAll(TOKEN_REDIS_ID+tokenId);
-            if (tokenMap != null){
-                try{
-                    tokenResponse.setAccessToken(tokenMap.get(ACCESS_TOKEN_TYPE).toString());
-                }catch (Exception e){
-                    log.info("根据tokenId获取token信息,获取{}类型token失败，tokenId{},失败原因:{}",ACCESS_TOKEN_TYPE,tokenId,e.getMessage());
-                }
-                try{
-                    tokenResponse.setRefreshToken(tokenMap.get(REFRESH_TOKEN_TYPE).toString());
-                }catch (Exception e){
-                    log.info("根据tokenId获取token信息,获取{}类型token失败，tokenId{},失败原因:{}",REFRESH_TOKEN_TYPE,tokenId,e.getMessage());
-                }
-            }
-        }
-        return tokenResponse;
-    }
-
-    /**
      * 验证并解析token
      */
     public static BiteClaims checkToken(String token) {

@@ -81,7 +81,7 @@ sentinel-datasource-nacos：1.5.2
 ###   测试
 ####    负载均衡测试接口（启动两个account模块，并配置不同的端口号）
 
-```json
+```
 负载均衡测试
 接口地址：http://127.0.0.1/test/ribbon-test
 接口类型：GET
@@ -91,7 +91,7 @@ sentinel-datasource-nacos：1.5.2
 
 ####    限流熔断测试接口
 
-```json
+```
 限流熔断测试
 接口地址：http://127.0.0.1/test/ribbon-test
 接口类型：GET
@@ -102,7 +102,7 @@ sentinel-datasource-nacos：1.5.2
 
 ####    动态配置测试接口
 
-```json
+```
 动态配置测试
 接口地址：http://127.0.0.1/test/get-dynamic-configuration-name
 接口类型：GET
@@ -113,7 +113,7 @@ sentinel-datasource-nacos：1.5.2
 
 ####    查询测试接口
 
-```json
+```
 查询测试接口
 接口地址：http://127.0.0.1/account/get/by-id?id=
 接口类型：GET
@@ -121,7 +121,7 @@ sentinel-datasource-nacos：1.5.2
 
 ####    分页测试接口
 
-```json
+```
 分页测试接口
 接口地址：http://127.0.0.1/account/page
 接口类型：POST
@@ -130,7 +130,7 @@ sentinel-datasource-nacos：1.5.2
 
 ####  分布式事务测试接口
 
-```json
+```
 分布式事务测试接口
 接口地址：http://127.0.0.1/account/transfer
 接口类型：POST
@@ -143,7 +143,7 @@ sentinel-datasource-nacos：1.5.2
 
 ####  多租户测试接口
 
-```json
+```
 多租户测试接口
 接口地址：http://127.0.0.1/record/query
 接口类型：GET
