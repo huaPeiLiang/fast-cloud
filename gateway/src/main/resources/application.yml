@@ -6,15 +6,15 @@ management:
         include: '*'
 spring:
   cloud:
-     gateway:
-       discovery:
-         locator:
-           enabled: true
-           lower-case-service-id: false
-       routes:
-         - id: FACADE
-           uri: lb://FACADE
-           predicates:
-             - Path=/**
-#             - Header=version, {version}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: false
+      routes:
+        - id: FACADE
+          uri: lb://FACADE
+          predicates:
+            - Path=/**
+
 
