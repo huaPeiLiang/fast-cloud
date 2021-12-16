@@ -4,6 +4,7 @@ import com.fast.enums.ReplacePdfEnum;
 import com.fast.model.SignatureInfo;
 import com.itextpdf.text.*;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
@@ -13,6 +14,8 @@ import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.security.*;
 import org.springframework.util.Assert;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.security.KeyStore;
 import java.security.PrivateKey;
@@ -22,83 +25,52 @@ import java.util.UUID;
 
 public class PdfUtil {
 
-    public static final char[] PASSWORD = "123456".toCharArray();// keystory密码
-
-    // pdf 加水印
-    public static void manipulatePdf(String src, String dest, String waterText) throws IOException, DocumentException {
+    public static void manipulatePdf(String src, OutputStream outputStream, String waterText) throws IOException, DocumentException {
         PdfReader reader = new PdfReader(src);
         int pages = reader.getNumberOfPages();
-
-        PdfStamper stamper = new PdfStamper(reader,new FileOutputStream(dest));
-
-        // 加密
-        String password = String.valueOf(Math.abs(waterText.hashCode()));
-        stamper.setEncryption(null,password.getBytes(), PdfWriter.ALLOW_PRINTING,PdfWriter.STANDARD_ENCRYPTION_40);
-
-        BaseColor color = new BaseColor(42, 183, 248);
-        Font f = new Font(Font.FontFamily.HELVETICA, 20,1,color);
-        new Font();
-        PdfContentByte over = stamper.getOverContent(3);
-
-        // 将水印文字变长
-        for (int i=0; i<10; i++){
-            waterText += ("     "+waterText);
-        }
-
-        Phrase p = new Phrase(waterText, f);
-
-        // 已第一页来计算水印
-        Rectangle pageSize = reader.getPageSize(1);
-        float width = pageSize.getWidth();
-        float height = pageSize.getHeight();
-        int v = (int)(width+height) / 180;
-
-        for (int i=1; i<=pages; i++){
-            over = stamper.getOverContent(i);
-            over.saveState();
+        PdfStamper stamper = new PdfStamper(reader, outputStream);
+        try{
+            BaseColor color = new BaseColor(230, 230, 230);
+            Font f = new Font(Font.FontFamily.HELVETICA, 20,1,color);
+            PdfContentByte over = stamper.getOverContent(3);
+            Phrase p = new Phrase(waterText, f);
+            // 计算初始x、y轴及偏移量
+            JLabel label = new JLabel();
+            label.setText(waterText);
+            FontMetrics metrics = label.getFontMetrics(label.getFont());
+            float offset = metrics.stringWidth(label.getText()) + 20;
+            float initXY = offset / 2;
+            // 设置水印透明度
             PdfGState gs1 = new PdfGState();
-            gs1.setFillOpacity(0.5f);
-            over.setGState(gs1);
-            int x = (int)height/2*-1;
-            for (int j=0; j<v; j++){
-                x += 180;
-                ColumnText.showTextAligned(over, Element.ALIGN_CENTER, p, x, (height/2), 45);
+            gs1.setFillOpacity(1);
+            // 每一页添加水印
+            Rectangle pageSize = null;
+            for (int i=1; i<=pages; i++){
+                over = stamper.getOverContent(i);
+                over.saveState();
+                over.setGState(gs1);
+                pageSize = reader.getPageSize(i);
+                float width = pageSize.getWidth();
+                // 水印信息过长，导致偏移量过大，进行处理
+                float xOffset = offset, yOffset = offset;
+                float initX = initXY, initY = initXY;
+                float ratio = (offset / width);
+                width = width*2;
+                xOffset = offset/(int)((ratio+1)*2);
+                initX = width/2*-1;
+                // y轴偏移
+                for (float y=initY; y<pageSize.getHeight()*1.5; y+=yOffset){
+                    // x轴偏移
+                    for (float x=initX; x<width; x+=xOffset){
+                        ColumnText.showTextAligned(over, Element.ALIGN_CENTER, p, x, y, 45);
+                    }
+                }
+                over.restoreState();
             }
-            over.restoreState();
+        }finally {
+            stamper.close();
+            reader.close();
         }
-        stamper.close();
-        reader.close();
-    }
-
-    // pdf 替换信息
-    public static String replacePdfContract(String pdfFile, String key, String value, String type) throws Exception{
-        Assert.hasText(pdfFile, "pdfFile is required");
-        Assert.hasText(key, "key is required");
-        Assert.hasText(value, "value is required");
-        Assert.hasText(type, "type is required");
-        com.itextpdf.text.pdf.PdfReader reader = new com.itextpdf.text.pdf.PdfReader(pdfFile);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        com.itextpdf.text.pdf.PdfStamper stamper = new com.itextpdf.text.pdf.PdfStamper(reader, baos);
-        com.itextpdf.text.pdf.AcroFields acroForm = stamper.getAcroFields();
-        if (acroForm != null) {
-            stamper.setFormFlattening(true);
-            if (type.equals(ReplacePdfEnum.input.name())){
-                acroForm.setField(key, value);
-                stamper.partialFormFlattening(key);
-            }else if (type.equals(ReplacePdfEnum.radio.name())){
-                acroForm.setField(key+value, "是");
-                stamper.partialFormFlattening(key);
-            }
-        }
-        stamper.close();
-        reader.close();
-        // 替换后的pdf输出地址
-        String file = "/"+ UUID.randomUUID().toString()+".pdf";
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(baos.toByteArray());
-        fos.close();
-        baos.close();
-        return file;
     }
 
     // 电子签章
@@ -170,42 +142,6 @@ public class PdfUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            PdfUtil app = new PdfUtil();
-            // 将证书文件放入指定路径，并读取keystore ，获得私钥和证书链
-            String pkPath = "D:/server.p12";
-            KeyStore ks = KeyStore.getInstance("PKCS12");
-            ks.load(new FileInputStream(pkPath), PASSWORD);
-            String alias = ks.aliases().nextElement();
-            PrivateKey pk = (PrivateKey) ks.getKey(alias, PASSWORD);
-            // 得到证书链
-            Certificate[] chain = ks.getCertificateChain(alias);
-            //需要进行签章的pdf
-            String path = "D:/demo.pdf";
-            // 封装签章信息
-            SignatureInfo signInfo = new SignatureInfo();
-            signInfo.setReason("理由");
-            signInfo.setLocation("位置");
-            signInfo.setPk(pk);
-            signInfo.setChain(chain);
-            signInfo.setCertificationLevel(PdfSignatureAppearance.NOT_CERTIFIED);
-            signInfo.setDigestAlgorithm(DigestAlgorithms.SHA1);
-            signInfo.setFieldName("demo");
-            // 签章图片
-            signInfo.setImagePath("d:/sign.jpg");
-            signInfo.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
-            signInfo.setRectllx(100);  // 值越大，代表向x轴坐标平移 缩小 （反之，值越小，印章会放大）
-            signInfo.setRectlly(200);  // 值越大，代表向y轴坐标向上平移（大小不变）
-            signInfo.setRecturx(400);  // 值越大   代表向x轴坐标向右平移  （大小不变）
-            signInfo.setRectury(100);  // 值越大，代表向y轴坐标向上平移（大小不变）
-            //签章后的pdf路径
-            app.sign(path, "D:/demo3.pdf", signInfo);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
