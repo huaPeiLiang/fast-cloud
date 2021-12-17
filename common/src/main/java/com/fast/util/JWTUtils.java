@@ -1,8 +1,7 @@
 package com.fast.util;
 
 import cn.hutool.extra.spring.SpringUtil;
-import com.alibaba.fastjson.JSONObject;
-import com.fast.enums.ErrorEnum;
+import com.fast.enums.ResponseCodeEnum;
 import com.fast.model.BiteClaims;
 import com.fast.model.FastRunTimeException;
 import com.fast.model.RandomKeyResponse;
@@ -13,7 +12,6 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Author Martin
@@ -138,7 +136,7 @@ public class JWTUtils {
         if (REFRESH_TOKEN_TYPE.equals(biteClaims.getTokenType())) {
             return getAccessToken(biteClaims.getAccountId(), biteClaims.getTenantId());
         }
-        throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+        throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
     }
 
     /**
@@ -178,7 +176,7 @@ public class JWTUtils {
         if (REFRESH_TOKEN_TYPE.equals(biteClaims.getTokenType())) {
             return getAccessTokenAndRefreshToken(biteClaims.getAccountId(), biteClaims.getTenantId());
         }
-        throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+        throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
     }
 
     /**
@@ -186,7 +184,7 @@ public class JWTUtils {
      */
     public static BiteClaims checkToken(String token) {
         if (StringUtils.isBlank(token)) {
-            throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+            throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
         }
         Claims claims = null;
         try {
@@ -195,10 +193,10 @@ public class JWTUtils {
             claims = Jwts.parserBuilder().setSigningKey(JWTKeys.getKey(mapKey)).build().parseClaimsJws(jws).getBody();
             Long validityTime = claims.get(VALIDITY_TIME, Long.class);
             if (System.currentTimeMillis() > validityTime) {
-                throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+                throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
             }
         } catch (Exception e) {
-            throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+            throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
         }
         return BiteClaims.builder().accountId(claims.get(ACCOUNT_ID, Long.class))
                 .tenantId(claims.get(TENANT_ID, Long.class))
@@ -212,7 +210,7 @@ public class JWTUtils {
      */
     public static BiteClaims getBiteClaims(String token) {
         if (StringUtils.isBlank(token)) {
-            throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+            throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
         }
         Claims claims = null;
         try {
@@ -221,10 +219,10 @@ public class JWTUtils {
             claims = Jwts.parserBuilder().setSigningKey(JWTKeys.getKey(mapKey)).build().parseClaimsJws(jws).getBody();
             Long validityTime = claims.get(VALIDITY_TIME, Long.class);
             if (System.currentTimeMillis() > validityTime) {
-                throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+                throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
             }
         } catch (Exception e) {
-            throw new FastRunTimeException(ErrorEnum.Token过期或已失效);
+            throw new FastRunTimeException(ResponseCodeEnum.Token过期或已失效);
         }
         return BiteClaims.builder().accountId(claims.get(ACCOUNT_ID, Long.class))
                 .tenantId(claims.get(TENANT_ID, Long.class))

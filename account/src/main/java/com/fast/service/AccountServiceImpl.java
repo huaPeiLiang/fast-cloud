@@ -2,6 +2,7 @@ package com.fast.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fast.api.record.RecordApi;
+import com.fast.enums.ResponseCodeEnum;
 import com.fast.mapper.AccountMapper;
 import com.fast.model.FastRunTimeException;
 import com.fast.model.account.request.AccountPageRequest;
@@ -35,11 +36,11 @@ public class AccountServiceImpl {
     public void transfer(AccountTransferRequest requestVo){
         Account sourceAccount = accountMapper.findByIdAndAmountIsGreaterThanEqual(requestVo.getSourceAccountId(), requestVo.getAmount());
         if (ObjectUtils.isEmpty(sourceAccount)){
-            throw new FastRunTimeException("转账人账号不存在,或金额不足");
+            throw new FastRunTimeException(ResponseCodeEnum.网络异常);
         }
         Account targetAccount = accountMapper.selectById(requestVo.getTargetAccountId());
         if (ObjectUtils.isEmpty(targetAccount)){
-            throw new FastRunTimeException("收款人账号不存在");
+            throw new FastRunTimeException(ResponseCodeEnum.网络异常);
         }
 
         // 从转账人账户扣款

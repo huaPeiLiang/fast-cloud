@@ -41,11 +41,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot</artifactId>
     </dependency>
-    <!--  cache -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-cache</artifactId>
-    </dependency>
+
     <!--  redis -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -74,51 +70,6 @@
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
         <version>1.2.36</version>
-    </dependency>
-
-    <dependency>
-        <groupId>commons-beanutils</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>1.9.4</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.4.1</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient-cache</artifactId>
-        <version>4.4.1</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>4.4.12</version>
-    </dependency>
-
-    <!-- iText -->
-    <dependency>
-        <groupId>com.itextpdf</groupId>
-        <artifactId>itextpdf</artifactId>
-        <version>5.5.3</version>
-    </dependency>
-    <dependency>
-        <groupId>com.itextpdf</groupId>
-        <artifactId>itext-asian</artifactId>
-        <version>5.2.0</version>
-    </dependency>
-    <dependency>
-        <groupId>com.itextpdf.tool</groupId>
-        <artifactId>xmlworker</artifactId>
-        <version>5.4.1</version>
-    </dependency>
-
-    <!-- exchange -->
-    <dependency>
-        <groupId>com.microsoft.ews-java-api</groupId>
-        <artifactId>ews-java-api</artifactId>
-        <version>2.0</version>
     </dependency>
 
     <dependency>

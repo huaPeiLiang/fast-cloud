@@ -2,7 +2,7 @@ package com.fast.config;
 
 
 import com.fast.filter.GrayFilter;
-import com.fast.filter.ResponseFilter;
+//import com.fast.filter.ResponseFilter;
 import com.fast.filter.TokenFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -23,10 +23,10 @@ public class GrayFilterConfiguration {
         return new TokenFilter();
     }
 
-    @Bean
-    @ConditionalOnMissingBean({ResponseFilter.class})
-    public ResponseFilter gatewayLoadBalancerResponseFilter() {
-        return new ResponseFilter();
-    }
+//    @Bean
+//    @ConditionalOnMissingBean({ResponseFilter.class})
+//    public ResponseFilter gatewayLoadBalancerResponseFilter() {
+//        return new ResponseFilter();
+//    }
 
 }

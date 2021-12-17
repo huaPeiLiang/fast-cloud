@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@FeignClient(name = "ACCOUNT${VERSION:}",configuration = {StashErrorDecoder.class, FeignRequest.class})
+@FeignClient(name = "ACCOUNT${VERSION:}",configuration = {StashErrorDecoder.class})
 @Component
 public interface AccountApi {
 
@@ -31,10 +31,7 @@ public interface AccountApi {
     //-----------------------------------------------------------------------------------------------------------------
     // TestController
     //-----------------------------------------------------------------------------------------------------------------
-    @GetMapping(value = "/test/ribbon-test")
-    String ribbonTest();
-
-    @GetMapping("/test/get-dynamic-configuration-name")
-    String getDynamicConfigurationName();
+    @PostMapping("/test/throw-fast-exception")
+    void throwFastException();
 
 }

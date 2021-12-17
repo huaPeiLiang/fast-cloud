@@ -1,5 +1,6 @@
 package com.fast.api.record;
 
+import com.fast.configuration.StashErrorDecoder;
 import com.fast.model.record.root.TranRecord;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "RECORD${VERSION:}")
+@FeignClient(name = "RECORD${VERSION:}",configuration = {StashErrorDecoder.class})
 @Component
 public interface RecordApi {
 

@@ -1,6 +1,6 @@
 package com.fast.filter;
 
-import com.fast.enums.ErrorEnum;
+import com.fast.enums.ResponseCodeEnum;
 import com.fast.model.FastRunTimeException;
 import com.fast.tools.DelegatingServiceInstance;
 import com.fast.tools.LoadBalancerUriTools;
@@ -53,7 +53,7 @@ public class GrayFilter implements GlobalFilter, Ordered {
             return this.choose(exchange, url.getHost()).doOnNext((response) -> {
                 if (!response.hasServer()) {
                     log.error("GrayFilter----------->无法找到实例");
-                    throw new FastRunTimeException(ErrorEnum.无法找到实例);
+                    throw new FastRunTimeException(ResponseCodeEnum.无法找到实例);
                 } else {
                     URI uri = exchange.getRequest().getURI();
                     String overrideScheme = null;

@@ -1,26 +1,25 @@
 package com.fast.model;
 
-import com.fast.enums.ErrorEnum;
+import com.fast.enums.ResponseCodeEnum;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class FastRunTimeException extends RuntimeException {
 
-    private String code = "-1";
-    private String message ;
+    private int code;
+
+    private String message;
+
+    public FastRunTimeException(ResponseCodeEnum responseCodeEnum) {
+        this.code = responseCodeEnum.code;
+        this.message = responseCodeEnum.message;
+    }
 
     public FastRunTimeException(String message) {
+        this.code = ResponseCodeEnum.网络异常.code;
         this.message = message;
-    }
-
-    public FastRunTimeException(ErrorEnum errorEnum) {
-        this.message = errorEnum.message;
-        this.code = errorEnum.code;
-    }
-
-    public FastRunTimeException(String code, String message) {
-        this.message = message;
-        this.code = code;
     }
 
 }

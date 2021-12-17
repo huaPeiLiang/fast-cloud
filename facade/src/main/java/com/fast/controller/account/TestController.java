@@ -1,13 +1,15 @@
 package com.fast.controller.account;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.fast.api.account.AccountApi;
+import com.fast.configuration.BaseResponse;
 import com.fast.model.FastRunTimeException;
 import com.fast.model.ReturnData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@BaseResponse
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
@@ -15,27 +17,14 @@ public class TestController {
     @Autowired
     private AccountApi accountApi;
 
-    @RequestMapping(value = "/ribbon-test")
-    @SentinelResource(value = "/test/ribbon-test", blockHandler = "ribbonTestBlockHandler", blockHandlerClass = TestBlockHandler.class)
-    public ReturnData ribbonTest(){
-        try{
-            return ReturnData.success(accountApi.ribbonTest());
-        }catch (FastRunTimeException e){
-            return ReturnData.failed(e.getMessage());
-        } catch (Exception e){
-            return ReturnData.failed(e.getMessage());
-        }
+    @PostMapping("/throw-fast-exception")
+    public void throwFastException(){
+        accountApi.throwFastException();
     }
 
-    @RequestMapping("/get-dynamic-configuration-name")
-    public ReturnData hystrixSuccess(){
-        try{
-            return ReturnData.success(accountApi.getDynamicConfigurationName());
-        }catch (FastRunTimeException e){
-            return ReturnData.failed(e.getMessage());
-        } catch (Exception e){
-            return ReturnData.failed(e.getMessage());
-        }
+    @PostMapping("/throw-fast-exception2")
+    public void throwFastException2(){
+        int i=0/0;
     }
 
 }

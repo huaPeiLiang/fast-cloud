@@ -1,6 +1,5 @@
 package com.fast.handler;
 
-import com.fast.enums.ErrorEnum;
 import com.fast.model.FastRunTimeException;
 import com.fast.model.ReturnData;
 import org.slf4j.Logger;
@@ -30,12 +29,13 @@ public class ErrorWebExceptionHandler extends DefaultErrorWebExceptionHandler {
     @Override
     protected Map<String, Object> getErrorAttributes(ServerRequest request, boolean includeStackTrace) {
         Throwable error = super.getError(request);
-        ReturnData returnData = ReturnData.failed(error.getMessage());
+        ReturnData returnData = new ReturnData();
         if (error instanceof FastRunTimeException){
             FastRunTimeException fastRunTimeException = (FastRunTimeException)error;
-            if (ErrorEnum.Token过期或已失效.code.equals(fastRunTimeException.getCode())){
-                returnData = ReturnData.failed(401,null,error.getMessage());
-            }
+            returnData = ReturnData.failed(fastRunTimeException);
+        }else{
+            Exception exception = (Exception)error;
+            returnData = ReturnData.failed(exception);
         }
         try {
             Map<String, Object> stringObjectMap = this.objectToMap((Object) returnData);

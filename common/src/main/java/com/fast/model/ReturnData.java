@@ -1,25 +1,23 @@
 package com.fast.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fast.enums.ResponseCodeEnum;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
+@Data
 public class ReturnData implements Serializable {
     protected final static Logger logger = LoggerFactory.getLogger(ReturnData.class);
 
     private static final long serialVersionUID = 1L;
 
-    public static final int CODE_SUCCESS = 1;
-
-    public static final int CODE_FAILED = -1;
-
     private Object data;
     private int code;
     private String msg;
 
-    public ReturnData() {}
+    public ReturnData(){}
 
     private ReturnData(int code, Object data, String msg) {
         this.code = code;
@@ -32,43 +30,15 @@ public class ReturnData implements Serializable {
     }
 
     public static final ReturnData success(Object data) {
-        return new ReturnData(CODE_SUCCESS, data, "Success.");
+        return new ReturnData(ResponseCodeEnum.成功.code, data, "Success.");
     }
 
-    public static final ReturnData failed(String msg) {
-        return failed(null, msg);
+    public static final ReturnData failed(Exception exception) {
+        if (exception instanceof FastRunTimeException){
+            return new ReturnData(((FastRunTimeException) exception).getCode(), null, exception.getMessage());
+        }else{
+            return new ReturnData(ResponseCodeEnum.网络异常.code, null, exception.getMessage());
+        }
     }
 
-    public static final ReturnData failed(Object data, String msg) {
-        return new ReturnData(CODE_FAILED, data, msg);
-    }
-
-    public static final ReturnData failed(int code,Object data, String msg) {
-        return new ReturnData(code, data, msg);
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    @JsonIgnore
-    public boolean isSuccess() {
-        return code == CODE_SUCCESS;
-    }
 }
