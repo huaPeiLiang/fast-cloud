@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
-public class ReturnData implements Serializable {
-    protected final static Logger logger = LoggerFactory.getLogger(ReturnData.class);
+public class ResponseEntity<T> implements Serializable {
+    protected final static Logger logger = LoggerFactory.getLogger(ResponseEntity.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -15,43 +15,48 @@ public class ReturnData implements Serializable {
 
     public static final int CODE_FAILED = -1;
 
-    private Object data;
+    private T data;
     private int code;
     private String msg;
 
-    public ReturnData() {}
+    public ResponseEntity() {}
 
-    private ReturnData(int code, Object data, String msg) {
+    public ResponseEntity(int code, T data, String msg) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public static final ReturnData success() {
+    public ResponseEntity(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public static final ResponseEntity success() {
         return success(null);
     }
 
-    public static final ReturnData success(Object data) {
-        return new ReturnData(CODE_SUCCESS, data, "Success.");
+    public static final ResponseEntity success(Object data) {
+        return new ResponseEntity(CODE_SUCCESS, data, "Success.");
     }
 
-    public static final ReturnData failed(String msg) {
+    public static final ResponseEntity failed(String msg) {
         return failed(null, msg);
     }
 
-    public static final ReturnData failed(Object data, String msg) {
-        return new ReturnData(CODE_FAILED, data, msg);
+    public static final ResponseEntity failed(Object data, String msg) {
+        return new ResponseEntity(CODE_FAILED, data, msg);
     }
 
-    public static final ReturnData failed(int code,Object data, String msg) {
-        return new ReturnData(code, data, msg);
+    public static final ResponseEntity failed(int code, Object data, String msg) {
+        return new ResponseEntity(code, data, msg);
     }
 
     public Object getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

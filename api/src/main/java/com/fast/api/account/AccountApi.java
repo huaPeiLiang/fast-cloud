@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
-@FeignClient(name = "ACCOUNT")
+@FeignClient(name = "ACCOUNT", contextId = "AccountApi")
 @Component
 public interface AccountApi {
 
